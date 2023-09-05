@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Documentation For Python</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main id="main-doc">
+        <section class="main-section" id="Introduction">
+            <header class="header" >Introduction</header>
+            <p id="s1p1">
+                In the following examples, input and output are distinguished by the presence or absence of prompts (>>> and …): to repeat the example, you must type everything after the prompt, when the prompt appears; lines that do not begin with a prompt are output from the interpreter. Note that a secondary prompt on a line by itself in an example means you must type a blank line; this is used to end a multi-line command.
+            </p>
+            <p>
+                Many of the examples in this manual, even those entered at the interactive prompt, include comments. Comments in Python start with the hash character, #, and extend to the end of the physical line. A comment may appear at the start of a line or following whitespace or code, but not within a string literal. A hash character within a string literal is just a hash character. Since comments are to clarify code and are not interpreted by Python, they may be omitted when typing in examples.
+            </p>
+            <p>
+                Some examples:
+            </p>
+            <div class="code">
+                <code>
+                    <span class="comment"># this is the first comment</span><br>
+                    spam = 1  <span class="comment"># and this is the second comment</span><br>
+                    <span class="comment"># ... and now a third!</span><br>
+                    text = "# This is not a comment because it's inside quotes."<br>
+                </code>
+            </div>
+        </section>
+        <section class="main-section" id="Python_Calculator">
+            <header class="header" >Python Calculator</header>
+            <p>
+                Let’s try some simple Python commands. Start the interpreter and wait for the primary prompt, >>>. (It shouldn’t take long.)
+            </p>
+            <div class="code">
+                <code>
+                    <span class="interpreter">>>></span> 2 + 2<br>
+                    4<br>
+                    <span class="interpreter">>>></span> 50 - 5*6<br>
+                    20<br>
+                    <span class="interpreter">>>></span> (50 - 5*6) / 4<br>
+                    5.0<br>
+                    <span class="interpreter">>>></span> 8 / 5  # division always returns a floating point number<br>
+                    1.6<br>
+                </code>
+            </div>
+            <p>
+                Division (/) always returns a float. To do floor division and get an integer result you can use the // operator; to calculate the remainder you can use %:
+            </p>
+            <div class="code">
+                <code>
+                    <span class="interpreter">>>></span>17 / 3  <span class="comment"># classic division returns a float</span><br>
+                    5.666666666666667<br>
+                    <span class="interpreter">>>></span>17 // 3  <span class="comment"># floor division discards the fractional part</span><br>
+                    5<br>
+                    <span class="interpreter">>>></span>17 % 3  <span class="comment"># the % operator returns the remainder of the division</span><br>
+                    2<br>
+                    <span class="interpreter">>>></span>5 * 3 + 2  <span class="comment"># floored quotient * divisor + remainder</span><br>
+                    17<br>
+                </code>
+            </div>
+        </section>
+        
+        <section class="main-section" id="If_Statements">
+            <header class="header" >If Statements</header>
+            <p>
+                Perhaps the most well-known statement type is the if statement. For example:
+            </p>
+            <div class="code">
+                <code>
+                    <span class="interpreter">>>></span> x = int(input("Please enter an integer: "))<br>
+                    Please enter an integer: 42<br>
+                    <span class="interpreter">>>></span> if x < 0:<br>
+                        x = 0<br>
+                        print('Negative changed to zero')<br>
+                    elif x == 0:<br>
+                        print('Zero')<br>
+                    elif x == 1:<br>
+                        print('Single')<br>
+                    else:<br>
+                        print('More')<br>
+
+                    More<br>
+                </code>
+            </div>
+            <p>
+                There can be zero or more elif parts, and the else part is optional. The keyword ‘elif’ is short for ‘else if’, and is useful to avoid excessive indentation. An if … elif … elif … sequence is a substitute for the switch or case statements found in other languages.
+            </p>
+            <p>
+                If you’re comparing the same value to several constants, or checking for specific types or attributes, you may also find the match statement useful. For more details see match Statements.
+            </p>
+        </section>
+        <section class="main-section" id="For_Statement">
+            <header class="header" >For Statement</header>
+            <p>
+                The for statement in Python differs a bit from what you may be used to in C or Pascal. Rather than always iterating over an arithmetic progression of numbers (like in Pascal), or giving the user the ability to define both the iteration step and halting condition (as C), Python’s for statement iterates over the items of any sequence (a list or a string), in the order that they appear in the sequence. For example (no pun intended):
+            </p>
+            <div class="code">
+                <code>
+                    <span class="interpreter">>>></span><span class="comment"># Measure some strings:</span> <br>
+                    words = ['cat', 'window', 'defenestrate']<br>
+                    <span class="interpreter">>>></span>for w in words:<br>
+                        print(w, len(w))<br><br>
+
+                    cat 3<br>
+                    window 6<br>
+                    defenestrate 12<br>
+                </code>
+            </div>
+        </section>
+        <section class="main-section" id="Match_Statements">
+            <header class="header" >Match Statements</header>
+            <p>
+                A match statement takes an expression and compares its value to successive patterns given as one or more case blocks. This is superficially similar to a switch statement in C, Java or JavaScript (and many other languages), but it’s more similar to pattern matching in languages like Rust or Haskell. Only the first pattern that matches gets executed and it can also extract components (sequence elements or object attributes) from the value into variables.
+            </p>
+            <p>
+                Several other key features of this statement:
+            </p>
+            <ul>
+                <li>
+                    Like unpacking assignments, tuple and list patterns have exactly the same meaning and actually match arbitrary sequences. An important exception is that they don’t match iterators or strings.
+                </li>
+                <li>
+                    Sequence patterns support extended unpacking: <code>[x, y, *rest]</code> and <code>(x, y, *rest)</code> work similar to unpacking assignments. The name after * may also be _, so (x, y, *_) matches a sequence of at least two items without binding the remaining items.
+                </li>
+                <li>
+                    Mapping patterns: <code>{"bandwidth": b, "latency": l}</code> captures the <code>"bandwidth"</code> and <code>"latency"</code>"latency" values from a dictionary. Unlike sequence patterns, extra keys are ignored. An unpacking like **rest is also supported. (But **_ would be redundant, so it is not allowed.)
+                </li>
+                <li>
+                    Subpatterns may be captured using the <code>as</code> keyword:
+                </li>
+                <li>
+                    Most literals are compared by equality, however the singletons True, False and None are compared by identity.
+
+                </li>
+            </ul>
+        </section>
+    </main>
+    <nav id="navbar">
+        <header>Python Documentation</header>
+        <a class="nav-link" href="#Introduction">Introduction</a>
+        <a class="nav-link" href="#Python_Calculator">Python Calculator</a>
+        <a class="nav-link" href="#If_Statements">If Statements</a>
+        <a class="nav-link" href="#For_Statement">For Statement</a>
+        <a class="nav-link" href="#Match_Statements">Match Statements</a>
+    </nav>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
